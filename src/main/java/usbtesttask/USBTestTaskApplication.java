@@ -82,6 +82,9 @@ public class USBTestTaskApplication implements CommandLineRunner {
         try {
             clientsNumber = Integer.valueOf(removeUnderscores(args[2]));
             transactionsNumber = Integer.valueOf(removeUnderscores(args[3]));
+            if (clientsNumber < 1 || transactionsNumber < 1) {
+                throw new NumberFormatException();
+            }
         } catch (NumberFormatException ex) {
             Output.error("<unique-clients-number> and <transactions-number> command line parameters should be positive integers.");
             return;
